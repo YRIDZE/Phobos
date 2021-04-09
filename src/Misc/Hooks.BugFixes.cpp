@@ -12,6 +12,12 @@ DEFINE_HOOK(423365, Phobos_BugFixes_SHPShadowCheck, 8)
 		0x4233EE;
 }
 
+DEFINE_HOOK(7225F3, TiberiumClass_Spread_NullCheck, 7)
+{
+	return R->EBP<int>() ?
+		0 : 0x722601; // 
+}
+
 /* 
     Allow usage of TileSet of 255 and above without making NE-SW broken bridges unrepairable
 
