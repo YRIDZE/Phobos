@@ -33,6 +33,7 @@ public:
 		Valueable<bool> Promote_IncludeSpawns;
 		Valueable<bool> ImmuneToCrit;
 		Valueable<bool> MultiMindControl_ReleaseVictim;
+        Valueable<int> CameoPriority;
 
 		Valueable<int> Shield_Strength;
 		Valueable<signed int> Shield_Armor;
@@ -75,6 +76,7 @@ public:
 			Promote_IncludeSpawns(false),
 			ImmuneToCrit(false),
 			MultiMindControl_ReleaseVictim(false),
+            CameoPriority(0),
 
 			Shield_Strength(0),
 			Shield_Armor(0),

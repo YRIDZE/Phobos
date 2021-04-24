@@ -100,3 +100,20 @@ DEFINE_HOOK(6B7282, SpawnManagerClass_AI_PromoteSpawns, 5)
 
 	return 0;
 }
+
+DEFINE_HOOK(6A8682, StripClass_OperatorLessThan_CameoPriority, 6)
+{
+    GET(TechnoTypeClass*, pLeft, EDI);
+    GET(TechnoTypeClass*, pRight, EBP);
+    auto pLeftExt = TechnoTypeExt::ExtMap.Find(pLeft);
+    auto pRightExt = TechnoTypeExt::ExtMap.Find(pRight);
+    auto leftPriority = pLeftExt->CameoPriority;
+    auto rightPriority = pRightExt->CameoPriority;
+
+    if (leftPriority > rightPriority)
+        return 0x6A8692;
+    else if (rightPriority > leftPriority)
+        return 0x6A86A0;
+
+    return 0;
+}
