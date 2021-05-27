@@ -18,6 +18,7 @@
     <ClCompile Include="src\Commands\Commands.cpp" />
     <ClCompile Include="src\Commands\Dummy.h" />
     <ClCompile Include="src\New\Type\RadTypeClass.cpp" />
+    <ClCompile Include="src\New\Type\ShieldType.cpp" />
     <ClCompile Include="src\Ext\Aircraft\Body.cpp" />
     <ClCompile Include="src\Ext\Aircraft\Hooks.cpp" />
     <ClCompile Include="src\Ext\Building\Body.cpp" />
@@ -82,6 +83,7 @@
     <ClInclude Include="src\Commands\ObjectInfo.h" />
     <ClInclude Include="src\Commands\Commands.h" />
     <ClInclude Include="src\New\Type\RadTypeClass.h" />
+    <ClInclude Include="src\New\Type\ShieldType.h" />
     <ClInclude Include="src\Utilities\Enumerable.h" />
     <ClInclude Include="src\ExtraHeaders\CCToolTip.h" />
     <ClInclude Include="src\ExtraHeaders\ArmorType.h" />
