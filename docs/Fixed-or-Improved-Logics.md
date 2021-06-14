@@ -84,7 +84,17 @@ ChronoDistanceFactor=   ; integer, amount to divide the distance to destination 
 ChronoMinimumDelay=     ; integer, the minimum delay for teleporting, no matter how short the distance
 ChronoRangeMinimum=     ; integer, can be used to set a small range within which the delay is constant
 ChronoDelay=            ; integer, delay after teleport for chronosphere
+```
 
+### Cameo Sorting
+
+- You can now specify Cameo Priority for any TechnoType. Vanilla sorting rules are [here](https://www.modenc.renegadeprojects.com/Cameo_Sorting).
+  - Cameo Priority is checked just before `TechLevel`. Greater `CameoPriority` wins.
+
+In `rulesmd.ini`:
+```ini
+[SOMETECHNO]
+CameoPriority=0        ; integer
 ```
 
 ## Weapons
