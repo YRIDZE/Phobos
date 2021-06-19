@@ -33,7 +33,7 @@ public:
 		Valueable<bool> Promote_IncludeSpawns;
 		Valueable<bool> ImmuneToCrit;
 		Valueable<bool> MultiMindControl_ReleaseVictim;
-        Valueable<int> CameoPriority;
+		Valueable<int> CameoPriority;
 
 		Valueable<int> Shield_Strength;
 		Valueable<signed int> Shield_Armor;
@@ -68,7 +68,7 @@ public:
 			Interceptor_MinimumGuardRange(0.0),
 			Interceptor_EliteGuardRange(0.0),
 			Interceptor_EliteMinimumGuardRange(0.0),
-			TurretOffset({0, 0, 0}),
+			TurretOffset({ 0, 0, 0 }),
 			Powered_KillSpawns(false),
 			Spawn_LimitedRange(false),
 			Spawn_LimitedExtraRange(0),
@@ -76,7 +76,7 @@ public:
 			Promote_IncludeSpawns(false),
 			ImmuneToCrit(false),
 			MultiMindControl_ReleaseVictim(false),
-            CameoPriority(0),
+			CameoPriority(0),
 
 			Shield_Strength(0),
 			Shield_Armor(0),

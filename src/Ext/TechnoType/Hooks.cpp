@@ -13,9 +13,9 @@ DEFINE_HOOK(6F64A9, TechnoClass_DrawHealthBar_Hide, 5)
 {
 	GET(TechnoClass*, pThis, ECX);
 	auto pTypeData = TechnoTypeExt::ExtMap.Find(pThis->GetTechnoType());
-	if (pTypeData && pTypeData->HealthBar_Hide) {
+	if (pTypeData && pTypeData->HealthBar_Hide)
 		return 0x6F6AB6;
-	}
+
 	return 0;
 }
 
@@ -45,9 +45,8 @@ DEFINE_HOOK(73B780, UnitClass_DrawVXL_TurretMultiOffset, 0)
 
 	auto const pTypeData = TechnoTypeExt::ExtMap.Find(technoType);
 
-	if (pTypeData && *pTypeData->TurretOffset.GetEx() == CoordStruct{ 0, 0, 0 }) {
+	if (pTypeData && *pTypeData->TurretOffset.GetEx() == CoordStruct { 0, 0, 0 })
 		return 0x73B78A;
-	}
 
 	return 0x73B790;
 }
@@ -79,17 +78,17 @@ DEFINE_HOOK(43E0C4, BuildingClass_Draw_43DA80_TurretMultiOffset, 0)
 	LEA_STACK(Matrix3D*, mtx, 0x60);
 	GET(TechnoTypeClass*, technoType, EDX);
 
-	TechnoTypeExt::ApplyTurretOffset(technoType, mtx, 1 / 8);
+	TechnoTypeExt::ApplyTurretOffset(technoType, mtx, 1/8);
 
 	return 0x43E0E8;
 }
 
-DEFINE_HOOK(6B7282, SpawnManagerClass_AI_PromoteSpawns, 5) 
+DEFINE_HOOK(6B7282, SpawnManagerClass_AI_PromoteSpawns, 5)
 {
 	GET(SpawnManagerClass*, pThis, ESI);
 
 	auto pTypeExt = TechnoTypeExt::ExtMap.Find(pThis->Owner->GetTechnoType());
-	if (pTypeExt->Promote_IncludeSpawns) 
+	if (pTypeExt->Promote_IncludeSpawns)
 	{
 		for (auto i : pThis->SpawnedNodes)
 		{
@@ -103,17 +102,17 @@ DEFINE_HOOK(6B7282, SpawnManagerClass_AI_PromoteSpawns, 5)
 
 DEFINE_HOOK(6A8682, StripClass_OperatorLessThan_CameoPriority, 6)
 {
-    GET(TechnoTypeClass*, pLeft, EDI);
-    GET(TechnoTypeClass*, pRight, EBP);
-    auto pLeftExt = TechnoTypeExt::ExtMap.Find(pLeft);
-    auto pRightExt = TechnoTypeExt::ExtMap.Find(pRight);
-    auto leftPriority = pLeftExt->CameoPriority;
-    auto rightPriority = pRightExt->CameoPriority;
+	GET(TechnoTypeClass*, pLeft, EDI);
+	GET(TechnoTypeClass*, pRight, EBP);
+	auto pLeftExt = TechnoTypeExt::ExtMap.Find(pLeft);
+	auto pRightExt = TechnoTypeExt::ExtMap.Find(pRight);
+	auto leftPriority = pLeftExt->CameoPriority;
+	auto rightPriority = pRightExt->CameoPriority;
 
-    if (leftPriority > rightPriority)
-        return 0x6A8692;
-    else if (rightPriority > leftPriority)
-        return 0x6A86A0;
+	if (leftPriority > rightPriority)
+		return 0x6A8692;
+	else if (rightPriority > leftPriority)
+		return 0x6A86A0;
 
-    return 0;
+	return 0;
 }
