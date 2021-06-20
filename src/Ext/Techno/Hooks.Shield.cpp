@@ -230,5 +230,97 @@ DEFINE_HOOK(6F683C, TechnoClass_DrawHealthBar_DrawOtherShieldBar, 7)
 }
 
 DEFINE_POINTER_CALL(0x6F7F51, ShieldClass::HealthRatio);
-DEFINE_POINTER_CALL(0x73FE0A, ShieldClass::HealthRatio);
-DEFINE_POINTER_CALL(0x741123, ShieldClass::HealthRatio);
+
+#pragma region UnitClass_GetFireError_Heal
+FireError __fastcall UnitClass__GetFireError(UnitClass* pThis, void*_, ObjectClass* pObj, int nWeaponIndex, bool ignoreRange)
+{
+	JMP_THIS(0x740FD0);
+}
+FireError __fastcall UnitClass__GetFireError_Wrapper(UnitClass* pThis, void*_, ObjectClass* pObj, int nWeaponIndex, bool ignoreRange)
+{
+	const auto pTarget = abstract_cast<TechnoClass*>(pObj);
+	int t = 0;
+
+	if (pTarget)
+		t = ShieldClass::AresScheme_ReplaceHealth(pTarget);
+
+	auto result = UnitClass__GetFireError(pThis, _, pObj, nWeaponIndex, ignoreRange);
+
+	if (pTarget && t)
+		ShieldClass::AresScheme_RetrieveHealth(pTarget, t);
+
+	return result;
+}
+DEFINE_VTABLE_PATCH(0x7F6030, UnitClass__GetFireError_Wrapper);
+#pragma endregion UnitClass_GetFireError_Heal
+
+#pragma region InfantryClass_GetFireError_Heal
+FireError __fastcall InfantryClass__GetFireError(InfantryClass* pThis, void*_, ObjectClass* pObj, int nWeaponIndex, bool ignoreRange)
+{
+	JMP_THIS(0x51C8B0);
+}
+FireError __fastcall InfantryClass__GetFireError_Wrapper(InfantryClass* pThis, void*_, ObjectClass* pObj, int nWeaponIndex, bool ignoreRange)
+{
+	const auto pTarget = abstract_cast<TechnoClass*>(pObj);
+	int t = 0;
+
+	if (pTarget)
+		t = ShieldClass::AresScheme_ReplaceHealth(pTarget);
+
+	auto result = InfantryClass__GetFireError(pThis, _, pObj, nWeaponIndex, ignoreRange);
+
+	if (pTarget && t)
+		ShieldClass::AresScheme_RetrieveHealth(pTarget, t);
+
+	return result;
+}
+DEFINE_VTABLE_PATCH(0x7EB418, InfantryClass__GetFireError_Wrapper);
+#pragma endregion InfantryClass_GetFireError_Heal
+
+#pragma region UnitClass__WhatAction
+Action __fastcall UnitClass__WhatAction(UnitClass* pThis, void*_, ObjectClass* pObj, bool ignoreForce)
+{
+	JMP_THIS(0x73FD50);
+}
+
+Action __fastcall UnitClass__WhatAction_Wrapper(UnitClass* pThis, void*_, ObjectClass* pObj, bool ignoreForce)
+{
+	const auto pTarget = abstract_cast<TechnoClass*>(pObj);
+	int t = 0;
+
+	if (pTarget)
+		t = ShieldClass::AresScheme_ReplaceHealth(pTarget);
+
+	auto result = UnitClass__WhatAction(pThis, _, pObj, ignoreForce);
+
+	if (pTarget && t)
+		ShieldClass::AresScheme_RetrieveHealth(pTarget, t);
+
+	return result;
+}
+DEFINE_VTABLE_PATCH(0x7F5CE4, UnitClass__WhatAction_Wrapper);
+#pragma endregion UnitClass__WhatAction
+
+#pragma region InfantryClass__WhatAction
+Action __fastcall InfantryClass__WhatAction(InfantryClass* pThis, void*_, ObjectClass* pObj, bool ignoreForce)
+{
+	JMP_THIS(0x51E3B0);
+}
+
+Action __fastcall InfantryClass__WhatAction_Wrapper(InfantryClass* pThis, void*_, ObjectClass* pObj, bool ignoreForce)
+{
+	const auto pTarget = abstract_cast<TechnoClass*>(pObj);
+	int t = 0;
+
+	if (pTarget)
+		t = ShieldClass::AresScheme_ReplaceHealth(pTarget);
+
+	auto result = InfantryClass__WhatAction(pThis, _, pObj, ignoreForce);
+
+	if (pTarget && t)
+		ShieldClass::AresScheme_RetrieveHealth(pTarget, t);
+
+	return result;
+}
+DEFINE_VTABLE_PATCH(0x7EB0CC, InfantryClass__WhatAction_Wrapper);
+#pragma endregion InfantryClass__WhatAction

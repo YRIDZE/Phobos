@@ -81,6 +81,36 @@ double __fastcall ShieldClass::HealthRatio(TechnoClass* pTechno)
 	return pTechno->GetHealthPercentage();
 }
 
+int ShieldClass::AresScheme_ReplaceHealth(TechnoClass* pTechno)
+{
+	if (const auto pExt = TechnoExt::ExtMap.Find(pTechno))
+	{
+		if (const auto pShieldData = pExt->ShieldData.get())
+		{
+			if (pShieldData->Available && pShieldData->HP > 0)
+			{
+				const auto shieldRatio = static_cast<double>(pExt->ShieldData->HP) / pExt->ShieldData->Type->Strength;
+				if (shieldRatio < 1.0)
+				{
+					int oldHealth = pTechno->Health;
+					pTechno->Health -= 1;
+					return oldHealth;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+void ShieldClass::AresScheme_RetrieveHealth(TechnoClass* pTechno, int t)
+{
+	if (const auto pExt = TechnoExt::ExtMap.Find(pTechno))
+	{
+		if (const auto pShieldData = pExt->ShieldData.get())
+			pTechno->Health = t;
+	}
+}
+
 // Is used for DeploysInto/UndeploysInto
 void ShieldClass::SyncShieldToAnother(TechnoClass* pFrom, TechnoClass* pTo)
 {
