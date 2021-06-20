@@ -63,6 +63,24 @@ bool ShieldClass::Save(PhobosStreamWriter& Stm) const
 	return Serialize(this, Stm);
 }
 
+double __fastcall ShieldClass::HealthRatio(TechnoClass* pTechno)
+{
+	if (const auto pExt = TechnoExt::ExtMap.Find(pTechno))
+	{
+		if (const auto pShieldData = pExt->ShieldData.get())
+		{
+			if (pShieldData->Available && pShieldData->HP > 0)
+			{
+				const auto shieldRatio = static_cast<double>(pExt->ShieldData->HP) / pExt->ShieldData->Type->Strength;
+				if (shieldRatio < 1.0)
+					return shieldRatio;
+			}
+		}
+	}
+
+	return pTechno->GetHealthPercentage();
+}
+
 // Is used for DeploysInto/UndeploysInto
 void ShieldClass::SyncShieldToAnother(TechnoClass* pFrom, TechnoClass* pTo)
 {

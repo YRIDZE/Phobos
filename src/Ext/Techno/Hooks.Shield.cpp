@@ -1,6 +1,7 @@
 #include "Body.h"
 #include <SpecificStructures.h>
 
+#include <Utilities/Macro.h>
 #include <Utilities/GeneralUtils.h>
 #include <Ext/TechnoType/Body.h>
 #include <Ext/WarheadType/Body.h>
@@ -192,7 +193,6 @@ DEFINE_HOOK(739956, DeploysInto_UndeploysInto_SyncShieldStatus, 6) //UnitClass_D
 	return 0;
 }
 
-
 DEFINE_HOOK(6F65D1, TechnoClass_DrawHealthBar_DrawBuildingShieldBar, 6)
 {
 	GET(TechnoClass*, pThis, ESI);
@@ -228,3 +228,7 @@ DEFINE_HOOK(6F683C, TechnoClass_DrawHealthBar_DrawOtherShieldBar, 7)
 
 	return 0;
 }
+
+DEFINE_POINTER_CALL(0x6F7F51, ShieldClass::HealthRatio);
+DEFINE_POINTER_CALL(0x73FE0A, ShieldClass::HealthRatio);
+DEFINE_POINTER_CALL(0x741123, ShieldClass::HealthRatio);

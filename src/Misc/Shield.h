@@ -27,6 +27,7 @@ public:
 	bool IsOnline();
 	bool IsAvailable();
 
+	static double __fastcall HealthRatio(TechnoClass* pTechno);
 	static void SyncShieldToAnother(TechnoClass* pFrom, TechnoClass* pTo);
 
 	bool Load(PhobosStreamReader& Stm, bool RegisterForChange);
